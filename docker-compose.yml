@@ -7,5 +7,5 @@ services:
     restart: always
     
     ports:
-      - "${FRONTEND_PORT}:80"  
+      - "${FRONTEND_PORT}:80"
 
