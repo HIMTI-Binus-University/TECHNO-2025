@@ -1,5 +1,5 @@
 
-name: Deploy Frontend Dev
+name: Deploy Techno Dev
 
 on:
   push:
