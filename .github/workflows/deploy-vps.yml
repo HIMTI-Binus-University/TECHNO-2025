@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 env:
-  IMAGE_NAME: ghcr.io/himti-binus-university/techno-2025
+  IMAGE_NAME: ghcr.io/himti-binus-university/techno2025
   CONTAINER_SERVICE: techno2025
 
 jobs:
