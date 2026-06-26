@@ -1,32 +1,16 @@
-
-# Build React App ---
-FROM node:20-alpine as builder
+FROM node:22-alpine AS build
 
 WORKDIR /app
 
-# Copy package.json dulu biar caching layer docker optimal
-COPY package.json package-lock.json ./ 
-RUN npm install
+COPY package*.json ./
+RUN npm ci
 
-# Copy semua codingan
 COPY . .
-
-# Terima variable saat build (penting buat API URL)
-ARG VITE_API_URL
-ENV VITE_API_URL=$VITE_API_URL
-
-# Build jadi folder /dist
 RUN npm run build
 
-# --- Stage 2: Serve pake Nginx ---
-FROM nginx:alpine
+FROM nginx:1.27-alpine
 
-# Copy hasil build dari Stage 1 ke folder Nginx
-COPY --from=builder /app/dist /usr/share/nginx/html
-
-# Copy config nginx kita tadi
+COPY --from=build /app/dist /usr/share/nginx/html
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 80
-
-CMD ["nginx", "-g", "daemon off;"]
