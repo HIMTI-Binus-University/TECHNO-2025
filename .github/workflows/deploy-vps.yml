@@ -5,7 +5,7 @@ on:
 
 env:
   IMAGE_NAME: ghcr.io/himti-binus-university/techno-2025
-  CONTAINER_SERVICE: techno2026
+  CONTAINER_SERVICE: techno2025
 
 jobs:
   build-and-push:
